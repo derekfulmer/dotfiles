@@ -1,0 +1,89 @@
+"=== General Settings ==="
+set number
+set cursorline
+set splitright
+set hidden
+set shortmess+=I
+set relativenumber
+set encoding=utf-8
+set fillchars+=vert:\
+set tabstop=4
+set backspace=indent,eol,start
+set laststatus=2
+set hlsearch
+set incsearch
+set showcmd
+set nobackup
+set showmatch
+set fileformats=unix,mac
+set smartcase
+set ignorecase
+"set nocursorcolumn
+set shortmess+=c
+set noswapfile
+set nobackup
+set autowrite
+syntax on
+ 
+"Increase max memory to show syntax highlighting for large files
+set maxmempattern=20000
+ 
+"~/.viminfo needs to be writable and readable. Set oldfiles to 1000 last
+"Recently opened files, :FzfHistory uses it
+set viminfo='1000
+ 
+"=== Mappings ==="
+let mapleader = ","
+ 
+"Fast saving
+nnoremap <leader>w :w!<cr>
+nnoremap <silent> <leader>q :q!<CR>
+ 
+"Remove search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+ 
+"Better split switching
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+ 
+"=== Autocmds ==="
+autocmd BufNewFile *.py set tabstop=4 set autoindent set fileformat=unix
+autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
+autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
+autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2
+autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
+ 
+"=== Start NERDTree and put the cursor back in the other window. ==="
+autocmd VimEnter * NERDTree | wincmd p
+ 
+"=== Remap key to open NERDTree easier ==="
+"<leader> key is \ (backslash) by default, changed to ',' per line 35 above.
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+let g:NERDTreeFileLines = 1
+ 
+ 
+"=== Plugins ==="
+call plug#begin()
+ 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'fatih/vim-go'
+Plug 'chrisbra/csv.vim'
+Plug 'hashivim/vim-hashicorp-tools'
+Plug 'plasticboy/vim-markdown'
+Plug 'tpope/vim-surround'
+Plug 'psliwka/vim-smoothie'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+ 
+call plug#end()

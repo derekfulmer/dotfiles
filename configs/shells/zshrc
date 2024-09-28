@@ -1,0 +1,40 @@
+###
+PS1="%F{green}[%n@%m:%~]%f "
+
+#export PATH="$HOME/.poetry/bin:$PATH"
+#export PATH="$HOME/Library/Python/3.9/bin:$HOME/.local/bin:$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/Library/Python/3.9/bin:$HOME/.local/bin:$HOME/.poetry/bin:$PATH:/usr/local/bin/aws_completer"
+
+## Throws error: /Users/derek/.zshrc:9: command not found: complete
+#complete -C '/usr/local/bin/aws_completer' aws
+
+export CLICOLOR=1
+export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+alias ll="ls -AFGly"
+alias gs="git status"
+alias gc="git commit"
+alias gpl="git pull"
+alias gpu="git push"
+alias ga="git add"
+
+alias vim=/opt/homebrew/bin/vim
+# Created by `userpath` on 2022-04-30 22:46:32
+export PATH="$PATH:/Users/derek/.local/bin"
+
+# Enable Auto cd
+setopt AUTO_CD
+
+# Enable shell spell checking
+setopt CORRECT
+setopt CORRECT_ALL
+
+autoload -U +X bashcompinit && bashcompinit
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
